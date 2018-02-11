@@ -15,6 +15,7 @@ socket.on('disconnect', function() {
 
 socket.on('newMessage', function(msg) {
     console.log('Chat Message;' + msg.from);
+    console.log('Chat Message;' + msg.text);
     console.log('Chat Message;' + msg.createAt);
 
 });
