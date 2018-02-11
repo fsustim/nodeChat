@@ -16,16 +16,25 @@ io.on('connection', (socket)=> {
     console.log('New user connected');
 
     var ctime = new Date().toTimeString();
+    // See io.emitt below
     // New Message - Custom event
+    /*
     socket.emit('newMessage', {
         from: "Duffy",
         text: "Feed me",
         createdAt: ctime
-    });
+    }); */
 
-    socket.on('newMessage', (message) => {
+    socket.on('createMessage', (message) => {
         console.log('Server - message was sent: ' + message.from);
         console.log('Server - message was sent: ' + message.text);
+
+        // io sends to everyone
+        io.emit('newMessage', {
+            from :message.from,
+            text: message.text,
+            createAt : new Date().toTimeString()
+        });
     });
 
     socket.on('disconnect', () => {
